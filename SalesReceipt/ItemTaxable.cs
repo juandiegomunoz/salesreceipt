@@ -72,7 +72,7 @@ namespace Lastminute.SalesReceipt
         public override string ToString()
         {
             // Return string
-            return $"{this.Quantity} {this.Name}: {this.GetPriceAfterTaxes():F2}";
+            return FormattableString.Invariant($"{this.Quantity} {this.Name}: {this.GetPriceAfterTaxes():F2}");
         }
 
         /// <summary>

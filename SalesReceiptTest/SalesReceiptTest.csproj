@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SalesReceipt\SalesReceipt.csproj.csproj" />
+    <ProjectReference Include="..\SalesReceipt\SalesReceipt.csproj" />
   </ItemGroup>
 
   <ItemGroup>

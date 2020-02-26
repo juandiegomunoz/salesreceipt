@@ -46,10 +46,10 @@ In order to build, test and run the code.
 Account to store the code in a repository and make it accesible to third parties.
 
 ### Circle CI
-For running the builds and test automatically.
+For running the builds and test automatically. A configuration file is created at .circleci directory in order to test and build the solution.
 
-### Code Inspector
-To check the quality of code.
+### Github Actions
+A workflow file has been created in .github/workflows directory called dotnetcore.yml in order to test and build the solution.
 
 ## Data Structures
 

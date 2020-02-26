@@ -21,6 +21,23 @@ namespace Lastminute.SalesReceipt
             // Start
             Console.WriteLine("Starting Sales Receipt Program");
 
+            // Set Taxes
+            ItemTaxable.ApplyTax(new Tax
+            {
+                Name = "Base Tax",
+                Exclude = new string[] {
+                    "CHOCOLATE",
+                    "PILLS",
+                    "BOOK" },
+                Rate = 10
+            });
+            ItemTaxable.ApplyTax(new Tax
+            {
+                Name = "Import Tax",
+                Include = new string[] { "IMPORTED" },
+                Rate = 5
+            });
+
             // Read files in the input folder
             foreach (string file in Directory.GetFiles("data"))
             {
@@ -29,14 +46,14 @@ namespace Lastminute.SalesReceipt
                 ItemList list = new ItemList();
                 foreach (string line in File.ReadLines(file))
                 {
-                    Item item = new Item();
+                    ItemTaxable item = new ItemTaxable();
                     item.LoadFromString(line);
-                    list.Add((ItemTaxable)item);
-                    Console.WriteLine(item.ToString());
+                    list.Add(item);
+                    Console.WriteLine(line);
                 }
 
                 Console.WriteLine("OUTPUT");
-                Console.Write(list.ToString());
+                Console.WriteLine(list.ToString());
             }
 
             // End

@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SalesReceipt.csproj</name>
+    </assembly>
+    <members>
+        <member name="T:Lastminute.SalesReceipt.ITaxable">
+            <summary>
+            This interface defines the methods to implement for any taxable item.
+            </summary>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.ITaxable.GetBasePrice">
+            <summary>
+            Get the Base price of an item before taxes.
+            </summary>
+            <returns>Base price of the item.</returns>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.ITaxable.GetPriceAfterTaxes">
+            <summary>
+            Get the Price of the item once taxes have been applied.
+            </summary>
+            <returns>Item Price after Taxes.</returns>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.ITaxable.GetTaxesPrice">
+            <summary>
+            Gets the tax import amount of the price.
+            </summary>
+            <returns>The amount of taxes charged for the item.</returns>
+        </member>
+        <member name="T:Lastminute.SalesReceipt.Item">
+            <summary>
+            Class to represent a shopping item.
+            </summary>
+        </member>
+        <member name="P:Lastminute.SalesReceipt.Item.Quantity">
+            <summary>
+            Gets or sets how many units of the Item.
+            </summary>
+        </member>
+        <member name="P:Lastminute.SalesReceipt.Item.Name">
+            <summary>
+            Gets or sets Name of the Item.
+            </summary>
+        </member>
+        <member name="P:Lastminute.SalesReceipt.Item.Price">
+            <summary>
+            Gets or sets the Base Price of the Item.
+            </summary>
+        </member>
+        <member name="T:Lastminute.SalesReceipt.ItemExtensionIdentical">
+            <summary>
+            Class to Extend the Class Item and make it able to compare with other items.
+            We do not implement IComparable Here because Item may have an ID in the future and
+            Some Items may be repeated. We assume that comparison is case sensitive, but may change.
+            </summary>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.ItemExtensionIdentical.IsIdentical(Lastminute.SalesReceipt.Item,Lastminute.SalesReceipt.Item)">
+            <summary>
+            Gets whether an Item have the same values than other. They can be different objects.
+            </summary>
+            <param name="item">First Item to compare.</param>
+            <param name="itemOther">Second Item to compare.</param>
+            <returns>True if the Item values are identicals.</returns>
+        </member>
+        <member name="T:Lastminute.SalesReceipt.ItemExtensionStrings">
+            <summary>
+            Extension to load Items from and to a string.
+            </summary>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.ItemExtensionStrings.LoadFromString(Lastminute.SalesReceipt.Item,System.String)">
+            <summary>
+            Loads data into an Item.
+            </summary>
+            <param name="item">Item to be populated with the new data.</param>
+            <param name="input">String input with the data in format [quantity] [description] at [price].</param>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.ItemExtensionStrings.ToString(Lastminute.SalesReceipt.Item)">
+            <summary>
+            Gets a string representing the item.
+            </summary>
+            <param name="item">Item to be parsed.</param>
+            <returns>String representing the Item in the format [quantity] [description] at [price].</returns>
+        </member>
+        <member name="T:Lastminute.SalesReceipt.ItemList">
+            <summary>
+            Class to represent a list of shopping items.
+            </summary>
+        </member>
+        <member name="P:Lastminute.SalesReceipt.ItemList.Total">
+            <summary>
+            Gets the total price of the Item List.
+            </summary>
+        </member>
+        <member name="P:Lastminute.SalesReceipt.ItemList.TotalBase">
+            <summary>
+            Gets the total base price of the Item List.
+            </summary>
+        </member>
+        <member name="P:Lastminute.SalesReceipt.ItemList.TotalTaxes">
+            <summary>
+            Gets the total taxes charged in the Item List.
+            </summary>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.ItemList.ToString">
+            <summary>
+            Gets the representation of the list in a string.
+            </summary>
+            <returns>A string representing the Item List, with the Sales Taxes and the Total at the end.</returns>
+        </member>
+        <member name="T:Lastminute.SalesReceipt.ItemTaxable">
+            <summary>
+            This Class Implements a sellable item allowing to calculate the taxes.
+            </summary>
+        </member>
+        <member name="F:Lastminute.SalesReceipt.ItemTaxable.taxes">
+            <summary>
+            List of taxes applied to the item.
+            </summary>
+        </member>
+        <member name="F:Lastminute.SalesReceipt.ItemTaxable.logger">
+            <summary>
+            Operations log.
+            </summary>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.ItemTaxable.ApplyTax(Lastminute.SalesReceipt.Tax)">
+            <summary>
+            Apply a new tax to the item.
+            </summary>
+            <param name="tax">Tax to be added.</param>
+            <returns>Whether the tax has been added or not.</returns>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.ItemTaxable.GetBasePrice">
+            <inheritdoc/>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.ItemTaxable.GetPriceAfterTaxes">
+            <inheritdoc/>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.ItemTaxable.GetTaxesPrice">
+            <inheritdoc/>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.ItemTaxable.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.ItemTaxable.CalculateTax(Lastminute.SalesReceipt.Tax)">
+            <summary>
+            Caculate the tax amount over the Item price.
+            </summary>
+            <param name="tax">Tax to apply.</param>
+            <returns>Amount of tax to increment.</returns>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.ItemTaxable.TaxableBy(Lastminute.SalesReceipt.Tax)">
+            <summary>
+            Returns whether a tax apply to the item or not.
+            </summary>
+            <param name="tax">Tax to compare.</param>
+            <returns>True if the tax must be applied. False otherwise.</returns>
+        </member>
+        <member name="T:Lastminute.SalesReceipt.Program">
+            <summary>
+            Execution point of the project.
+            </summary>
+        </member>
+        <member name="M:Lastminute.SalesReceipt.Program.Main(System.String[])">
+            <summary>
+            Main Entry point of the application.
+            </summary>
+            <param name="args">Array of arguments passed to the method.</param>
+        </member>
+        <member name="T:Lastminute.SalesReceipt.Tax">
+            <summary>
+            Class to represent a tax.
+            </summary>
+        </member>
+        <member name="P:Lastminute.SalesReceipt.Tax.Name">
+            <summary>
+            Gets or sets the Name used to identify the tax.
+            </summary>
+        </member>
+        <member name="P:Lastminute.SalesReceipt.Tax.Include">
+            <summary>
+            Gets or sets the List of string to look for in order to include an item.
+            </summary>
+        </member>
+        <member name="P:Lastminute.SalesReceipt.Tax.Exclude">
+            <summary>
+            Gets or sets the List of string to look for in the name of the item in order to exclude it.
+            </summary>
+        </member>
+        <member name="P:Lastminute.SalesReceipt.Tax.Rate">
+            <summary>
+            Gets or sets the Rate to apply.
+            </summary>
+        </member>
+    </members>
+</doc>

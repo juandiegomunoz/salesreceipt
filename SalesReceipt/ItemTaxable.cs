@@ -7,7 +7,7 @@ namespace Lastminute.SalesReceipt
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    //using NLog;
+    using NLog;
 
     /// <summary>
     /// This Class Implements a sellable item allowing to calculate the taxes.
@@ -22,7 +22,7 @@ namespace Lastminute.SalesReceipt
         /// <summary>
         /// Operations log.
         /// </summary>
-        //private static Logger logger = NLog.LogManager.GetCurrentClassLogger();
+        private static Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Apply a new tax to the item.
@@ -37,7 +37,7 @@ namespace Lastminute.SalesReceipt
             }
             catch (Exception err)
             {
-                //logger.Error(err, "Could'n Apply new Tax.");
+                logger.Error(err, "Could'n Apply new Tax.");
                 return false;
             }
 
@@ -53,11 +53,11 @@ namespace Lastminute.SalesReceipt
         /// <inheritdoc/>
         public float GetPriceAfterTaxes()
         {
-            return this.GetBasePrice() + this.GetTaxImport();
+            return this.GetBasePrice() + this.GetTaxesPrice();
         }
 
         /// <inheritdoc/>
-        public float GetTaxImport()
+        public float GetTaxesPrice()
         {
             float output = 0F;
             foreach (Tax tax in taxes)

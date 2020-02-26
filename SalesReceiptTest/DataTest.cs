@@ -18,9 +18,8 @@ namespace Lastminute.SalesReceiptTest
         private readonly IConfiguration config;
 
         /// <summary>
-        /// Default constructor
+        /// Default constructor.
         /// </summary>
-        /// <param name="config"></param>
         public DataTest()
         {
             config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();

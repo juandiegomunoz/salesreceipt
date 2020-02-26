@@ -25,6 +25,6 @@ namespace Lastminute.SalesReceipt
         /// Gets the tax import amount of the price.
         /// </summary>
         /// <returns>The amount of taxes charged for the item.</returns>
-        float GetTaxImport();
+        float GetTaxesPrice();
     }
 }

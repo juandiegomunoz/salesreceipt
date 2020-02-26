@@ -42,7 +42,7 @@ namespace Lastminute.SalesReceipt
         {
             get
             {
-                return this.Sum(item => item.GetTaxImport());
+                return this.Sum(item => item.GetTaxesPrice());
             }
         }
 

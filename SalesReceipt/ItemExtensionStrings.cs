@@ -1,4 +1,4 @@
-// <copyright file="ItemExtension.cs" company="Lastminute">
+// <copyright file="ItemExtensionStrings.cs" company="Lastminute">
 //     Copyright (c) Lastminute. All rights reserved.
 // </copyright>
 
@@ -31,8 +31,8 @@ namespace Lastminute.SalesReceipt
             if (int.TryParse(words[0], out int q))
             {
                 item.Quantity = q;
-                words.RemoveAt(0);
             }
+            words.RemoveAt(0);
 
             // There is no more information
             if (words.Count == 0)
@@ -44,8 +44,8 @@ namespace Lastminute.SalesReceipt
             if (float.TryParse(words[words.Count - 1], out float p))
             {
                 item.Price = p;
-                words.RemoveAt(words.Count - 1);
             }
+            words.RemoveAt(words.Count - 1);
 
             // There is no more information
             if (words.Count == 0)

@@ -5,12 +5,9 @@
 namespace Lastminute.SalesReceiptTest
 {
     using System.IO;
-    using System.Configuration;
     using Lastminute.SalesReceipt;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.Configuration.Json;
-    using System.Text.Json;
 
     /// <summary>
     /// Class to test Data components for Sales Receipt Project.

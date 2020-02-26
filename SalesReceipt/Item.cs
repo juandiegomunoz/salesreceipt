@@ -2,8 +2,6 @@
 //     Copyright (c) Lastminute. All rights reserved.
 // </copyright>
 
-using System;
-
 namespace Lastminute.SalesReceipt
 {
     /// <summary>

@@ -39,7 +39,8 @@ namespace Lastminute.SalesReceiptTest
             {
                 foreach (string line in File.ReadLines(file))
                 {
-                    Item item = Item.FromString(line);
+                    Item item = new Item();
+                    item.LoadFromString(line);
                 }
             }
         }
@@ -58,9 +59,10 @@ namespace Lastminute.SalesReceiptTest
             // Compare
             for (int i = 0; i < inputs.Length; i++)
             {
-                Item itemInput = Item.FromString(inputs[i]);
+                Item itemInput = new Item();
+                itemInput.LoadFromString(inputs[i]);
                 Item itemOutput = outputs[i];
-                Assert.AreEqual(itemInput, itemOutput);
+                Assert.IsTrue(itemInput.IsIdentical(itemOutput));
             }
         }
     }

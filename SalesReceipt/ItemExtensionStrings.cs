@@ -1,38 +1,88 @@
-// <copyright file="ItemLoaderExtension.cs" company="Lastminute">
+// <copyright file="ItemExtension.cs" company="Lastminute">
 //     Copyright (c) Lastminute. All rights reserved.
 // </copyright>
 
 namespace Lastminute.SalesReceipt
 {
-    public partial class Item
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Extension to load Items from and to a string.
+    /// </summary>
+    public static class ItemExtensionStrings
     {
         /// <summary>
-        /// Generates a new Item and Loads data into it. 
+        /// Loads data into an Item.
         /// </summary>
-        /// <param name="input"></param>
-        public static Item FromString(string input)
+        /// <param name="item">Item to be populated with the new data.</param>
+        /// <param name="input">String input with the data in format [quantity] [description] at [price].</param>
+        public static void LoadFromString(this Item item, string input)
         {
-            // Prepare output
-            Item item = new Item();
             // Get the strings
-            string[] words = input.Split(' ');
+            List<string> words = new List<string>(input.Split(' '));
+
             // Empty input
-            if (words.Length == 0) return item;
+            if (words.Count == 0)
+            {
+                return;
+            }
+
             // First one is the Quantity
-            if (int.TryParse(words[0], out int q)) item.Quantity = q;
+            if (int.TryParse(words[0], out int q))
+            {
+                item.Quantity = q;
+                words.RemoveAt(0);
+            }
+
             // There is no more information
-            if (words.Length < 2) return item;
+            if (words.Count == 0)
+            {
+                return;
+            }
+
             // Last one is the price
-            if (float.TryParse(words[words.Length - 1], out float p)) item.Price = p;
+            if (float.TryParse(words[words.Count - 1], out float p))
+            {
+                item.Price = p;
+                words.RemoveAt(words.Count - 1);
+            }
+
             // There is no more information
-            if (words.Length < 3) return item;
+            if (words.Count == 0)
+            {
+                return;
+            }
+
             // The rest is the description
             item.Name = string.Empty;
-            for (int i = 1; i < words.Length - 1; i++) item.Name += words[i] + " ";
-            // Remove final ' at '
-            if (item.Name.EndsWith(" at ")) item.Name = item.Name.Remove(item.Name.Length - 4);
-            // Return output
-            return item;
+
+            // Handle imported word and put at the beginning
+            string imported = words.Find(w => w.ToUpper() == "IMPORTED");
+            if (imported != null)
+            {
+                words.Remove(imported);
+                words.Insert(0, imported);
+            }
+
+            // Handle at
+            string at = words.Find(s => s.ToUpper() == "AT");
+            if (at != null)
+            {
+                words.Remove(at);
+            }
+
+            // Set Name
+            item.Name = string.Join(' ', words);
+        }
+
+        /// <summary>
+        /// Gets a string representing the item.
+        /// </summary>
+        /// <param name="item">Item to be parsed.</param>
+        /// <returns>String representing the Item in the format [quantity] [description] at [price].</returns>
+        public static string ToString(this Item item)
+        {
+            return item.Quantity + " " + item.Name + " at " + item.Price;
         }
     }
 }

@@ -62,8 +62,11 @@ Represent a tax. It has rules to include or exclude an item to the tax. Contains
 ### ITaxable
 Interface to implement operations over taxes, like Get the base Price, get price after taxes and get payable taxes over an item.
 
-### ItemExtension
+### ItemExtensionStrings
 Class to load information from a string into an item and to convert an item to a string.
+
+### ItemExtensionIcentical
+Class to compare the fields of an Item with another and determine if are identicals.
 
 ### ItemTaxable
 Item with tax information that implements the ITaxable interface. Taxes are applied over this class statically using the method ApplyTax. Once the tax is added to the list of taxes, is used to calculate final price.

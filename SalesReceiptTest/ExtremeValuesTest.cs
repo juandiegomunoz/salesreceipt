@@ -4,7 +4,9 @@
 
 namespace Lastminute.SalesReceiptTest
 {
+    using System.Collections.Generic;
     using Lastminute.SalesReceipt;
+    using Microsoft.Extensions.Configuration;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
@@ -13,29 +15,40 @@ namespace Lastminute.SalesReceiptTest
     [TestClass]
     public class ExtremeValuesTest
     {
-        [TestMethod]
-        private void MaxValues()
+        private readonly IConfiguration config;
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="config"></param>
+        public ExtremeValuesTest()
         {
-            // Create item
-            ItemTaxable item1 = new ItemTaxable()
+            config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+
+            // Apply Taxes
+            foreach (Tax tax in config.GetSection("ExtremeValuesTest:Taxes").Get<List<Tax>>())
             {
-                Name = "Very expensive item",
-                Quantity = int.MaxValue,
-                Price = float.MaxValue,
-            };
+                ItemTaxable.ApplyTax(tax);
+            }
+        }
 
-            // Create Tax
-            Tax tax = new Tax()
+        [TestMethod]
+        public void MaxValues()
+        {
+            // Get expected inputs and ouptuts
+            string[] inputs = config.GetSection("ExtremeValuesTest:Inputs").Get<string[]>();
+            string[] outputs = config.GetSection("ExtremeValuesTest:Outputs").Get<string[]>();
+
+            // Check inputs and outpus are the same length
+            Assert.AreEqual(inputs.Length, outputs.Length);
+
+            // Compare inputs and outputs
+            for (int i = 0; i < inputs.Length; i++)
             {
-                Name = "Horrendus Tax",
-                Rate = 150,
-            };
-
-            // Apply tax
-            ItemTaxable.ApplyTax(tax);
-
-            // Expected output
-            Assert.AreEqual("adfadfa", item1.ToString());
+                ItemTaxable item = new ItemTaxable();
+                item.LoadFromString(inputs[i]);
+                Assert.AreEqual(item.ToString(), outputs[i]);
+            }
         }
     }
 }

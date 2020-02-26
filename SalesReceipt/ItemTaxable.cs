@@ -72,7 +72,7 @@ namespace Lastminute.SalesReceipt
         public override string ToString()
         {
             // Return string
-            return $"{this.Quantity} {this.Name}: {this.GetPriceAfterTaxes():n2}";
+            return $"{this.Quantity} {this.Name}: {this.GetPriceAfterTaxes():N2}";
         }
 
         /// <summary>

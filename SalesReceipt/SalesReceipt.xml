@@ -107,6 +107,12 @@
             </summary>
             <returns>A string representing the Item List, with the Sales Taxes and the Total at the end.</returns>
         </member>
+        <member name="M:Lastminute.SalesReceipt.ItemList.Write">
+            <summary>
+            Gets the string output of the list. yielding results is more effective than compose a string.
+            </summary>
+            <returns>A string representing the Item List, with the Sales Taxes and the Total at the end.</returns>
+        </member>
         <member name="T:Lastminute.SalesReceipt.ItemTaxable">
             <summary>
             This Class Implements a sellable item allowing to calculate the taxes.

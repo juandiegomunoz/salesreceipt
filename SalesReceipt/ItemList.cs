@@ -52,23 +52,27 @@ namespace Lastminute.SalesReceipt
         /// <returns>A string representing the Item List, with the Sales Taxes and the Total at the end.</returns>
         public override string ToString()
         {
-            // Prepare output
-            string output = string.Empty;
+            // Return Write joint
+            return string.Join(Environment.NewLine, Write());
+        }
 
+        /// <summary>
+        /// Gets the string output of the list. yielding results is more effective than compose a string.
+        /// </summary>
+        /// <returns>A string representing the Item List, with the Sales Taxes and the Total at the end.</returns>
+        public IEnumerable<string> Write()
+        {
             // Write the item list
             foreach (ItemTaxable item in this)
             {
-                output += item.ToString() + Environment.NewLine;
+                yield return item.ToString();
             }
 
             // Write sales taxes
-            output += $"Sales Taxes: {this.TotalTaxes:n2}{Environment.NewLine}";
+            yield return $"Sales Taxes: {this.TotalTaxes:n2}";
 
             // Write Total
-            output += $"Total: {this.Total:n2}";
-
-            // Return output
-            return output;
+            yield return $"Total: {this.Total:n2}";
         }
     }
 }

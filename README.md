@@ -46,7 +46,7 @@ In order to build, test and run the code.
 Account to store the code in a repository and make it accesible to third parties.
 
 ### Circle CI
-For running the builds and test automatically. A configuration file is created at .circleci directory in order to test and build the solution.
+For running the builds and test automatically. A configuration file is created at .circleci directory in order to test and build the solution. In a production environment, you can create your docker image or publish to a nuget or npm repository.
 
 ### Github Actions
 A workflow file has been created in .github/workflows directory called dotnetcore.yml in order to test and build the solution.
@@ -81,9 +81,16 @@ For testing purposes, this project contains a runable program class which loads 
 
 ## Test
 
+### Standard test
+Compare the results proccessed from the input files against the output files in the data directory.
+
 ### Data Test
 The class DataTest validates the process of loading data from a string.
 
 ### Extreme Values
 The class ExtremeValuesTest validates the values of maximum float, zero, negative values in price, tax rate and quantity.
+
+### Performance Tests
+This class test the performance of loading and representing huge list of items.
+
 

@@ -15,7 +15,6 @@ namespace Lastminute.SalesReceiptTest
     [TestClass]
     public class ExtremeValuesTest
     {
-        private readonly IConfiguration config;
 
         /// <summary>
         /// Default constructor
@@ -23,10 +22,8 @@ namespace Lastminute.SalesReceiptTest
         /// <param name="config"></param>
         public ExtremeValuesTest()
         {
-            config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-
             // Apply Taxes
-            foreach (Tax tax in config.GetSection("ExtremeValuesTest:Taxes").Get<List<Tax>>())
+            foreach (Tax tax in ConfigurationTest.Config.GetSection("ExtremeValuesTest:Taxes").Get<List<Tax>>())
             {
                 ItemTaxable.ApplyTax(tax);
             }
@@ -36,8 +33,8 @@ namespace Lastminute.SalesReceiptTest
         public void MaxValues()
         {
             // Get expected inputs and ouptuts
-            string[] inputs = config.GetSection("ExtremeValuesTest:Inputs").Get<string[]>();
-            string[] outputs = config.GetSection("ExtremeValuesTest:Outputs").Get<string[]>();
+            string[] inputs = ConfigurationTest.Config.GetSection("ExtremeValuesTest:Inputs").Get<string[]>();
+            string[] outputs = ConfigurationTest.Config.GetSection("ExtremeValuesTest:Outputs").Get<string[]>();
 
             // Check inputs and outpus are the same length
             Assert.AreEqual(inputs.Length, outputs.Length);

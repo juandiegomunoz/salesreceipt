@@ -16,15 +16,14 @@ namespace Lastminute.SalesReceiptTest
     [TestClass]
     public class StandardTest
     {
-        private readonly IConfiguration config;
 
+        /// <summary>
+        /// Default Constructor.
+        /// </summary>
         public StandardTest()
         {
-            // Read Config
-            config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-            
             // Apply Taxes
-            foreach (Tax tax in config.GetSection("StandardTest:Taxes").Get<List<Tax>>())
+            foreach (Tax tax in ConfigurationTest.Config.GetSection("StandardTest:Taxes").Get<List<Tax>>())
             {
                 ItemTaxable.ApplyTax(tax);
             }
@@ -36,7 +35,7 @@ namespace Lastminute.SalesReceiptTest
         [TestMethod]
         public void CompareInputOutput()
         {
-            foreach (string file in Directory.GetFiles(config["DataTest:Input"]))
+            foreach (string file in Directory.GetFiles(ConfigurationTest.Config["DataTest:Input"]))
             {
                 // Create the list
                 ItemList list = new ItemList();
@@ -48,7 +47,7 @@ namespace Lastminute.SalesReceiptTest
                 }
 
                 // Read the output
-                string fileOut = Path.Combine(config["DataTest:Output"], Path.GetFileName(file));
+                string fileOut = Path.Combine(ConfigurationTest.Config["DataTest:Output"], Path.GetFileName(file));
                 string expected = File.ReadAllText(fileOut);
 
                 // Compare

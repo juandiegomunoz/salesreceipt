@@ -41,5 +41,18 @@ jobs:
           dotnet-version: 2.2.108
       - name: Run program with dotnet
         run: dotnet run --project "./SalesReceiptApp/SalesReceiptApp.csproj" --configuration Release
+   
+    publish:
+        
+        runs-on: ubuntu-latest
+        
+        steps:
+        - name: Upload artifact
+          uses: actions/upload-artifact@v1.0.0
+          with:
+            # Artifact name
+            name: SalesReceipt Library
+            # Directory containing files to upload
+            path: ./SalesReceipt/bin/Release/netcoreapp2.2/SalesReceipt.dll
       
 

@@ -1,30 +1,45 @@
-name: .NET Core
+name: SalesReceipt Workflow
 
 on: [push]
 
 jobs:
-  test:
+    build:
+
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.2.108
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+   
+    test:
     
-    runs-on: [ubuntu-latest]
+      runs-on: [ubuntu-latest]
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 2.2.108
-    - name: Test with mstest
-      run: dotnet test --configuration Release
+      steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.2.108
+      - name: Test with mstest
+        run: dotnet test --configuration Release
       
-  build:
+    run:
 
-    runs-on: ubuntu-latest
+      runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 2.2.108
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
+      steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.2.108
+      - name: Run program with dotnet
+        run: dotnet run --project "./SalesReceiptApp/SalesReceiptApp.csproj" --configuration Release
+      
+

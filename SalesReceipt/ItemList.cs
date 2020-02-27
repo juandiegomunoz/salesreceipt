@@ -53,7 +53,7 @@ namespace Lastminute.SalesReceipt
         public override string ToString()
         {
             // Return Write joint
-            return string.Join(Environment.NewLine, Write());
+            return string.Join(Environment.NewLine, this.Write());
         }
 
         /// <summary>

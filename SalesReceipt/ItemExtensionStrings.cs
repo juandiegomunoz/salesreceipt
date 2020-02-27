@@ -1,5 +1,5 @@
 // <copyright file="ItemExtensionStrings.cs" company="Lastminute">
-//     Copyright (c) Lastminute. All rights reserved.
+// Copyright (c) 2020 Lastminute. All rights reserved.
 // </copyright>
 
 namespace Lastminute.SalesReceipt
@@ -32,6 +32,7 @@ namespace Lastminute.SalesReceipt
             {
                 item.Quantity = q;
             }
+
             words.RemoveAt(0);
 
             // There is no more information
@@ -45,6 +46,7 @@ namespace Lastminute.SalesReceipt
             {
                 item.Price = p;
             }
+
             words.RemoveAt(words.Count - 1);
 
             // There is no more information

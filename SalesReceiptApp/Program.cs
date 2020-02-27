@@ -1,5 +1,5 @@
 ﻿// <copyright file="Program.cs" company="Lastminute">
-//     Copyright (c) Lastminute. All rights reserved.
+// Copyright (c) 2020 Lastminute. All rights reserved.
 // </copyright>
 
 namespace Lastminute.SalesReceiptApp
@@ -7,8 +7,8 @@ namespace Lastminute.SalesReceiptApp
     using System;
     using System.Collections.Generic;
     using System.IO;
-    using Microsoft.Extensions.Configuration;
     using Lastminute.SalesReceipt;
+    using Microsoft.Extensions.Configuration;
 
     /// <summary>
     /// Execution point of the project.

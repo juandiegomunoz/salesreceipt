@@ -28,4 +28,8 @@
     <Content Include="data\**" CopyToOutputDirectory="Always" LinkBase="data\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AdditionalFiles Include="..\stylecop.json" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,5 @@
 // <copyright file="Tax.cs" company="Lastminute">
-//     Copyright (c) Lastminute. All rights reserved.
+// Copyright (c) 2020 Lastminute. All rights reserved.
 // </copyright>
 
 namespace Lastminute.SalesReceipt

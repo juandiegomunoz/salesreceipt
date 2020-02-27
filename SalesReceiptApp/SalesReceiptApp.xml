@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SalesReceiptApp</name>
+    </assembly>
+    <members>
+        <member name="T:Lastminute.SalesReceiptApp.Program">
+            <summary>
+            Execution point of the project.
+            </summary>
+        </member>
+        <member name="M:Lastminute.SalesReceiptApp.Program.Main(System.String[])">
+            <summary>
+            Main Entry point of the application.
+            </summary>
+            <param name="args">Array of arguments passed to the method.</param>
+        </member>
+    </members>
+</doc>

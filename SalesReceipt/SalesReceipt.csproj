@@ -6,6 +6,7 @@
     <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
     <Authors>Juan Diego Munoz</Authors>
     <Company>Lastminute</Company>
+    <Copyright>Copyright (C) 2020 Lastminute</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +19,10 @@
 
   <ItemGroup>
     <Content Include="appsettings.json" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\stylecop.json" />
   </ItemGroup>
 
 </Project>

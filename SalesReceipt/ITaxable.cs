@@ -1,5 +1,5 @@
 // <copyright file="ITaxable.cs" company="Lastminute">
-// Copyright © Lastminute. All rights reserved.
+// Copyright (c) 2020 Lastminute. All rights reserved.
 // </copyright>
 
 namespace Lastminute.SalesReceipt

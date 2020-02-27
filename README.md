@@ -4,7 +4,7 @@
 
 *Author: Juan Diego Munoz*
 
-*Date: 24/02/2020*
+*Date: 26/02/2020*
 
 ## Introduction
 
@@ -44,12 +44,13 @@ In order to build, test and run the code.
 
 ### Github
 Account to store the code in a repository and make it accesible to third parties.
+A workflow file has been created in .github/workflows directory called dotnetcore.yml in order to test and build the solution.
 
 ### Circle CI
 For running the builds and test automatically. A configuration file is created at .circleci directory in order to test and build the solution. In a production environment, you can create your docker image or publish to a nuget or npm repository.
 
-### Github Actions
-A workflow file has been created in .github/workflows directory called dotnetcore.yml in order to test and build the solution.
+## Folder Structure
+There is a solution in the root with three different projects. SalesReceipt is the reusable library. SalesReceiptApp has been created in order to make it run. SalesReceiptTest is the test project for the library.
 
 ## Data Structures
 
@@ -65,7 +66,7 @@ Interface to implement operations over taxes, like Get the base Price, get price
 ### ItemExtensionStrings
 Class to load information from a string into an item and to convert an item to a string.
 
-### ItemExtensionIcentical
+### ItemExtensionIdentical
 Class to compare the fields of an Item with another and determine if are identicals.
 
 ### ItemTaxable
@@ -74,12 +75,19 @@ Item with tax information that implements the ITaxable interface. Taxes are appl
 ### ItemList
 Represent the list of the items where we can calculate the total of the invoice.
 
-### Program
-For testing purposes, this project contains a runable program class which loads the information in the data directory and displays the input and the output.
-
 ## Run
+To run the library, a project is prepared with a Program class.
+
+``` bash
+dotnet run --project "./SalesReceiptApp/SalesReceiptApp.csproj" --configuration Release
+```
 
 ## Test
+To test different aspects of the library, a Test project is prepared. In order to run the test
+
+``` bash
+dotnet test --configuration Release
+```
 
 ### Standard test
 Compare the results proccessed from the input files against the output files in the data directory.
